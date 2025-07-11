@@ -1,6 +1,6 @@
 const shortid = require("shortid");
-const URL=require('../models/url');
-const isValidURL=require('../utils/urlValidation');
+const URL = require('../models/url');
+const isValidURL = require('../utils/urlValidation');
 
 async function handleGenerateNewShortURL(req,res){
     const body=req.body;
@@ -43,7 +43,7 @@ async function redirectURL(req,res){
 }
 
 async function handleGetAnalytics(req,res){
-    const shortId=req.params.shortId;
+    const shortId=req.params.code;
     const result=await URL.findOne({shortId});
     return res.json({totalClicks:result.visitHistory.length,
         analytics: result.visitHistory,

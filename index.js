@@ -10,7 +10,8 @@ const urlRoute = require("./src/routes/url");
 const rateLimiter = require("./src/middleware/rateLimiter");
 
 const { handleGetAnalytics, redirectURL } = require("./src/controllers/url.js");
-const app=express();
+
+const app = express();
 
 connectToMongoDB(process.env.MONGO_URI)
 .then(()=> console.log("MongoDB connected"));
@@ -29,4 +30,4 @@ app.get('/:code',redirectURL);
 
 app.get('/analytics/:code', handleGetAnalytics);
 
-app.listen(process.env.PORT,()=>console.log(`Server Started at PORT:${process.env.PORT}`));
+app.listen(process.env.PORT,() => console.log(`Server Started at PORT:${process.env.PORT}`));
