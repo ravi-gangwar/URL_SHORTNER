@@ -19,15 +19,14 @@ app.use(express.json());
 
 app.use(rateLimiter);
 
+app.get("/", (req, res) => {
+  res.send("Hello World");
+})
+
 app.use("/shorten",urlRoute);
 
 app.get('/:code',redirectURL); 
 
 app.get('/analytics/:code', handleGetAnalytics);
-
-// Health check endpoint for Docker
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'OK', message: 'URL Shortener API is running' });
-});
 
 app.listen(process.env.PORT,()=>console.log(`Server Started at PORT:${process.env.PORT}`));
