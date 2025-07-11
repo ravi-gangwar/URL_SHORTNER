@@ -36,9 +36,10 @@ async function redirectURL(req,res){
             }
         }
     );
+    // check if the url exists first
+    if(!entry) return res.status(400).json({error:'shortId not found'});
     // check if the url is expired
     if(entry.expiresAt < Date.now()) return res.status(400).json({error:'url expired'});
-    if(!entry) return res.status(400).json({error:'shortId not found'});
     res.redirect(entry.redirectURL);
 }
 
